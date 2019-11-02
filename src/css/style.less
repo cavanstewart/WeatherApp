@@ -1,0 +1,75 @@
+
+.vendor(@property, @value) {
+    -webkit-@{property}: @value;
+       -moz-@{property}: @value;
+}
+
+
+
+.jumbotron {
+    background-image: linear-gradient(to left, rgb(201, 93, 201), rgb(73, 73, 161), rgb(89, 185, 89), rgb(216, 216, 91), rgb(209, 170, 98), rgb(219, 99, 99));
+}
+.card-header {
+    background-image: linear-gradient(to left, rgb(201, 93, 201), rgb(73, 73, 161), rgb(89, 185, 89), rgb(216, 216, 91), rgb(209, 170, 98), rgb(219, 99, 99));
+    border: black 1px;
+}
+
+.button-mixin(@color, @text-color) {
+  background: @color;
+  color: @text-color;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+@buttonColors: rgb(255, 56, 56), rgb(252, 252, 58), rgb(34, 156, 34), rgb(70, 70, 245), rgb(170, 45, 170);
+@textColors: rgb(102, 2, 2), rgb(138, 99, 0), rgb(0, 78, 0), rgb(0, 0, 105), rgb(80, 1, 80);
+
+
+.loop ( @i ) when (@i > 0) {
+    .btn-@{i} {
+        .button-mixin(extract(@buttonColors, @i), extract(@textColors, @i));
+        margin: 0 5px 0 5px;
+    }
+    .loop( @i - 1 );
+}
+
+.btn-group {
+    .loop(5);
+    margin-bottom: 20px;
+}
+
+.btn-group button:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  .vendor(box-shadow, 0px 5px 40px -10px rgba(0, 0, 0, 0.57));
+  transition: all 0.4s ease 0s;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    :nth-child(even) {
+        background: rgb(231, 231, 231);
+    }
+}
+
+.card-body {
+    padding: 0;
+}
+
+h3 {
+    margin-right: 50px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
